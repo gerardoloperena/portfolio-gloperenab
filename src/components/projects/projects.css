@@ -61,9 +61,9 @@
 
 .project-card__surface {
   position: absolute;
-  z-index: -1;
-  inset: 1px;
-  border-radius: calc(var(--project-radius) - 1px);
+  z-index: 1;
+  inset: 2px;
+  border-radius: calc(var(--project-radius) - 2px);
   background: linear-gradient(
     160deg,
     color-mix(in srgb, var(--color-surface-raised) 92%, var(--project-accent)),
@@ -76,7 +76,7 @@
 
 .project-card::after {
   position: absolute;
-  z-index: 4;
+  z-index: 0;
   inset: 0;
   border: 2px solid var(--color-accent);
   border-radius: inherit;
@@ -92,8 +92,11 @@
   position: relative;
   z-index: 2;
   display: flex;
-  height: 100%;
+  height: calc(100% - 4px);
   flex-direction: column;
+  overflow: hidden;
+  border-radius: calc(var(--project-radius) - 2px);
+  margin: 2px;
 }
 
 .project-card__media {

@@ -22,9 +22,8 @@
 
 .profile-orbit-frame::before {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   inset: -6px;
-  padding: 6px;
   border-radius: inherit;
   background: conic-gradient(
     from 0deg,
@@ -43,17 +42,21 @@
   content: '';
   pointer-events: none;
   transition: opacity 950ms ease;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
+}
+
+.profile-orbit-frame::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--color-surface);
+  content: '';
+  pointer-events: none;
 }
 
 .profile-photo-inner {
+  position: relative;
+  z-index: 2;
   transition:
     border-color 950ms ease,
     box-shadow 950ms ease;
@@ -149,7 +152,6 @@
 
 .portfolio-shell.easter-egg-active .project-card::after {
   border: 0;
-  padding: 2px;
   background: linear-gradient(
     90deg,
     var(--easter-primary),
@@ -163,14 +165,6 @@
   transition:
     opacity 240ms ease,
     filter 90ms ease;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
 }
 
 .portfolio-shell.easter-egg-active .project-card:hover::after,
