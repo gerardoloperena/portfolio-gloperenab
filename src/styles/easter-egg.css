@@ -1,0 +1,423 @@
+.portfolio-shell {
+  --easter-primary: #f97316;
+  --easter-secondary: #facc15;
+  --easter-tertiary: #fb923c;
+  --easter-glow: rgb(249 115 22 / 55%);
+}
+
+:root.dark .portfolio-shell,
+[data-theme='dark'] .portfolio-shell {
+  --easter-primary: #22c55e;
+  --easter-secondary: #22d3ee;
+  --easter-tertiary: #86efac;
+  --easter-glow: rgb(34 211 238 / 48%);
+}
+
+.profile-orbit-frame {
+  isolation: isolate;
+  transition:
+    filter 950ms ease,
+    border-color 950ms ease;
+}
+
+.profile-orbit-frame::before {
+  position: absolute;
+  z-index: 1;
+  inset: -6px;
+  padding: 6px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    var(--easter-primary) 0deg,
+    var(--easter-secondary) 34deg,
+    var(--easter-tertiary) 62deg,
+    var(--easter-primary) 98deg,
+    var(--easter-secondary) 136deg,
+    var(--easter-primary) 182deg,
+    var(--easter-tertiary) 224deg,
+    var(--easter-secondary) 268deg,
+    var(--easter-primary) 310deg,
+    var(--easter-secondary) 360deg
+  );
+  opacity: 0;
+  content: '';
+  pointer-events: none;
+  transition: opacity 950ms ease;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+
+.profile-photo-inner {
+  transition:
+    border-color 950ms ease,
+    box-shadow 950ms ease;
+}
+
+.profile-orbit-dot::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    var(--easter-secondary),
+    var(--easter-primary) 52%,
+    var(--easter-tertiary)
+  );
+  opacity: 0;
+  content: '';
+  pointer-events: none;
+  transition: opacity 950ms ease;
+}
+
+.portfolio-shell svg {
+  transition:
+    color 950ms ease,
+    filter 950ms ease;
+}
+
+.portfolio-shell .radial-navigation__icon {
+  transition:
+    color 950ms ease,
+    border-color 950ms ease,
+    background-color 950ms ease,
+    filter 950ms ease;
+}
+
+.portfolio-shell .radial-navigation__border {
+  transition: stroke 950ms ease;
+}
+
+.portfolio-shell .project-card::after {
+  transition:
+    opacity 240ms ease,
+    border-color 950ms ease,
+    filter 950ms ease;
+}
+
+.portfolio-shell.easter-egg-active .profile-orbit-frame::before {
+  opacity: 1;
+  transition-duration: 90ms;
+  animation: easter-ring-flames 820ms linear infinite;
+}
+
+.portfolio-shell.easter-egg-active .profile-orbit-frame {
+  filter: drop-shadow(0 0 12px var(--easter-glow));
+  transition-duration: 90ms;
+  animation: easter-frame-glow 360ms ease-in-out infinite alternate;
+}
+
+.portfolio-shell.easter-egg-active .profile-photo-inner {
+  border-color: var(--easter-secondary);
+  box-shadow: inset 0 0 22px var(--easter-glow);
+  transition-duration: 90ms;
+}
+
+.portfolio-shell.easter-egg-active .profile-orbit-dot::before {
+  opacity: 1;
+  transition-duration: 70ms;
+}
+
+.portfolio-shell.easter-egg-active .profile-orbit-dot {
+  animation: easter-dot-flame 180ms ease-in-out infinite alternate;
+}
+
+.portfolio-shell.easter-egg-active svg {
+  color: var(--easter-primary) !important;
+  filter: drop-shadow(0 0 4px var(--easter-glow));
+  transition-duration: 90ms;
+  animation: easter-icon-flame 320ms ease-in-out infinite alternate;
+}
+
+.portfolio-shell.easter-egg-active .radial-navigation__icon {
+  color: var(--easter-primary);
+  border-color: color-mix(in srgb, var(--easter-primary) 65%, transparent);
+  background-color: color-mix(in srgb, var(--easter-primary) 14%, var(--color-surface));
+  filter: drop-shadow(0 0 7px var(--easter-glow));
+  transition-duration: 90ms;
+}
+
+.portfolio-shell.easter-egg-active .radial-navigation__border {
+  stroke: var(--easter-primary);
+  transition-duration: 90ms;
+}
+
+.portfolio-shell.easter-egg-active .project-card::after {
+  border: 0;
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--easter-primary),
+    var(--easter-secondary),
+    var(--easter-tertiary),
+    var(--easter-primary),
+    var(--easter-secondary),
+    var(--easter-primary)
+  );
+  background-size: 280% 100%;
+  transition:
+    opacity 240ms ease,
+    filter 90ms ease;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+
+.portfolio-shell.easter-egg-active .project-card:hover::after,
+.portfolio-shell.easter-egg-active .project-card:focus-visible::after {
+  filter: drop-shadow(0 0 8px var(--easter-glow));
+  animation: easter-border-flames 720ms linear infinite;
+}
+
+.portfolio-shell.easter-egg-active .project-card__role {
+  color: var(--easter-primary);
+}
+
+.portfolio-shell.easter-egg-active .project-card__arrow {
+  border-color: color-mix(in srgb, var(--easter-primary) 65%, var(--color-border));
+  color: var(--easter-primary);
+}
+
+.portfolio-shell.easter-egg-active .project-card:hover .project-card__arrow,
+.portfolio-shell.easter-egg-active .project-card:focus-visible .project-card__arrow {
+  background-color: var(--easter-primary);
+}
+
+.portfolio-shell.easter-egg-active .project-card:hover .project-card__arrow svg,
+.portfolio-shell.easter-egg-active .project-card:focus-visible .project-card__arrow svg {
+  color: var(--color-on-accent) !important;
+  filter: none;
+  animation: none;
+}
+
+.portfolio-shell.easter-egg-active .experience-timeline__item {
+  --experience-accent: var(--easter-primary) !important;
+  --continuing-accent: var(--easter-primary) !important;
+}
+
+.portfolio-shell.easter-egg-active .experience-timeline__marker,
+.portfolio-shell.easter-egg-active .experience-timeline__line,
+.portfolio-shell.easter-egg-active .experience-timeline__continuation-line,
+.portfolio-shell.easter-egg-active .experience-timeline__rail::after {
+  filter: drop-shadow(0 0 8px var(--easter-glow));
+  animation: easter-track-flame 420ms ease-in-out infinite alternate;
+}
+
+.portfolio-shell.easter-egg-active .experience-timeline__content {
+  border-block-end-color: color-mix(in srgb, var(--easter-primary) 72%, var(--color-border));
+}
+
+.portfolio-shell.easter-egg-active .contact-card {
+  --contact-accent: var(--easter-primary);
+
+  animation: easter-frame-glow 420ms ease-in-out infinite alternate;
+}
+
+.portfolio-shell.easter-egg-active .contact-card::before,
+.portfolio-shell.easter-egg-active .contact-card::after {
+  background: linear-gradient(
+    90deg,
+    var(--easter-primary),
+    var(--easter-secondary),
+    var(--easter-tertiary),
+    var(--easter-primary),
+    var(--easter-secondary),
+    var(--easter-primary)
+  );
+  background-size: 260% 100%;
+  animation: easter-strip-flames 680ms linear infinite;
+}
+
+.portfolio-shell.easter-egg-active .about-section__introduction-reveal::before {
+  background: linear-gradient(
+    90deg,
+    var(--easter-primary),
+    var(--easter-secondary),
+    var(--easter-tertiary),
+    var(--easter-primary)
+  );
+  background-size: 260% 100%;
+  animation: easter-strip-flames 680ms linear infinite;
+}
+
+.portfolio-shell.easter-egg-active .about-section__hero,
+.portfolio-shell.easter-egg-active .about-hobby {
+  animation: easter-frame-glow 520ms ease-in-out infinite alternate;
+}
+
+.portfolio-shell.easter-egg-active .about-hobby__title {
+  color: var(--easter-primary);
+}
+
+.portfolio-shell.easter-egg-active .certificate-card__media {
+  border-color: var(--easter-primary);
+  box-shadow:
+    0 18px 44px color-mix(in srgb, var(--easter-glow) 38%, transparent),
+    0 0 20px color-mix(in srgb, var(--easter-primary) 20%, transparent);
+  animation: easter-frame-glow 520ms ease-in-out infinite alternate;
+}
+
+.portfolio-shell.easter-egg-active .certificate-card__link:hover .certificate-card__title,
+.portfolio-shell.easter-egg-active .certificate-card__link:focus-visible .certificate-card__title {
+  color: var(--easter-primary);
+}
+
+.portfolio-shell.easter-egg-active .scroll-to-top-button {
+  border-color: var(--easter-primary);
+  color: var(--easter-primary);
+  box-shadow:
+    0 14px 36px color-mix(in srgb, var(--easter-glow) 44%, transparent),
+    0 0 22px color-mix(in srgb, var(--easter-primary) 22%, transparent);
+  animation: easter-frame-glow 520ms ease-in-out infinite alternate;
+}
+
+@keyframes easter-ring-flames {
+  0% {
+    transform: rotate(0deg) scale(1);
+    filter: brightness(1);
+  }
+
+  25% {
+    transform: rotate(90deg) scale(1.008);
+    filter: brightness(1.2);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(0.997);
+    filter: brightness(1.05);
+  }
+
+  75% {
+    transform: rotate(270deg) scale(1.006);
+    filter: brightness(1.28);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes easter-frame-glow {
+  from {
+    filter: drop-shadow(0 0 8px var(--easter-glow));
+  }
+
+  to {
+    filter: drop-shadow(0 0 18px var(--easter-glow));
+  }
+}
+
+@keyframes easter-dot-flame {
+  from {
+    filter: brightness(1) drop-shadow(0 0 4px var(--easter-glow));
+  }
+
+  to {
+    filter: brightness(1.45) drop-shadow(0 0 11px var(--easter-glow));
+  }
+}
+
+@keyframes easter-icon-flame {
+  from {
+    filter: brightness(1) drop-shadow(0 0 2px var(--easter-glow));
+  }
+
+  to {
+    filter: brightness(1.25) drop-shadow(0 0 6px var(--easter-glow));
+  }
+}
+
+@keyframes easter-border-flames {
+  0% {
+    background-position: 0% 50%;
+    filter: brightness(1) drop-shadow(0 0 5px var(--easter-glow));
+  }
+
+  50% {
+    filter: brightness(1.35) drop-shadow(0 0 12px var(--easter-glow));
+  }
+
+  100% {
+    background-position: 280% 50%;
+    filter: brightness(1.08) drop-shadow(0 0 7px var(--easter-glow));
+  }
+}
+
+@keyframes easter-strip-flames {
+  from {
+    background-position: 0% 50%;
+    filter: brightness(1) drop-shadow(0 0 3px var(--easter-glow));
+  }
+
+  to {
+    background-position: 260% 50%;
+    filter: brightness(1.35) drop-shadow(0 0 9px var(--easter-glow));
+  }
+}
+
+@keyframes easter-track-flame {
+  from {
+    filter: brightness(1) drop-shadow(0 0 5px var(--easter-glow));
+  }
+
+  to {
+    filter: brightness(1.4) drop-shadow(0 0 13px var(--easter-glow));
+  }
+}
+
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .profile-orbit-frame::before,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .profile-orbit-frame,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .profile-orbit-dot,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active svg,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .project-card::after,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .experience-timeline__marker,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .experience-timeline__line,
+:root[data-effects='off']
+  .portfolio-shell.easter-egg-active
+  .experience-timeline__continuation-line,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .experience-timeline__rail::after,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .contact-card,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .contact-card::before,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .contact-card::after,
+:root[data-effects='off']
+  .portfolio-shell.easter-egg-active
+  .about-section__introduction-reveal::before,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .about-section__hero,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .about-hobby,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .certificate-card__media,
+:root[data-effects='off'] .portfolio-shell.easter-egg-active .scroll-to-top-button {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-shell.easter-egg-active .profile-orbit-frame::before,
+  .portfolio-shell.easter-egg-active .profile-orbit-frame,
+  .portfolio-shell.easter-egg-active .profile-orbit-dot,
+  .portfolio-shell.easter-egg-active svg,
+  .portfolio-shell.easter-egg-active .project-card::after,
+  .portfolio-shell.easter-egg-active .experience-timeline__marker,
+  .portfolio-shell.easter-egg-active .experience-timeline__line,
+  .portfolio-shell.easter-egg-active .experience-timeline__continuation-line,
+  .portfolio-shell.easter-egg-active .experience-timeline__rail::after,
+  .portfolio-shell.easter-egg-active .contact-card,
+  .portfolio-shell.easter-egg-active .contact-card::before,
+  .portfolio-shell.easter-egg-active .contact-card::after,
+  .portfolio-shell.easter-egg-active .about-section__introduction-reveal::before,
+  .portfolio-shell.easter-egg-active .about-section__hero,
+  .portfolio-shell.easter-egg-active .about-hobby,
+  .portfolio-shell.easter-egg-active .certificate-card__media,
+  .portfolio-shell.easter-egg-active .scroll-to-top-button {
+    animation: none;
+  }
+}

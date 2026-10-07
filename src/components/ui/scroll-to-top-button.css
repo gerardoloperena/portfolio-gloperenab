@@ -1,0 +1,88 @@
+.scroll-to-top-button {
+  position: fixed;
+  z-index: 65;
+  inset-inline-end: clamp(1rem, 2.5vw, 2rem);
+  inset-block-end: clamp(1rem, 2.5vw, 2rem);
+
+  display: grid;
+  width: 3.35rem;
+  height: 3.35rem;
+  place-items: center;
+
+  border: 1px solid color-mix(in srgb, var(--color-accent) 58%, var(--color-border));
+  border-radius: 50%;
+
+  background-color: color-mix(in srgb, var(--color-surface) 88%, transparent);
+
+  color: var(--color-accent);
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 34px color-mix(in srgb, var(--app-shadow) 68%, transparent),
+    0 0 18px color-mix(in srgb, var(--color-accent) 12%, transparent);
+
+  -webkit-backdrop-filter: blur(var(--effect-blur));
+  backdrop-filter: blur(var(--effect-blur));
+
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    color 240ms var(--easing-standard),
+    border-color 240ms var(--easing-standard),
+    background-color 240ms var(--easing-standard),
+    box-shadow 240ms var(--easing-standard),
+    transform 240ms var(--easing-standard);
+}
+
+.scroll-to-top-button__icon {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+@media (hover: hover) {
+  .scroll-to-top-button:hover {
+    border-color: var(--color-accent);
+    background-color: var(--color-surface-raised);
+    color: var(--color-accent-strong);
+    box-shadow:
+      0 16px 38px color-mix(in srgb, var(--app-shadow) 76%, transparent),
+      0 0 22px color-mix(in srgb, var(--color-accent) 20%, transparent);
+    transform: translateY(-0.2rem);
+  }
+}
+
+.scroll-to-top-button:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.scroll-to-top-button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .scroll-to-top-button {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .scroll-to-top-button__icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}
+
+:root[data-effects='off'] .scroll-to-top-button {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top-button {
+    transition: none;
+  }
+
+  .scroll-to-top-button:hover,
+  .scroll-to-top-button:active {
+    transform: none;
+  }
+}

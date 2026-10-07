@@ -1,0 +1,282 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --font-sans: var(--font-interface);
+  --color-canvas: var(--app-canvas);
+  --color-surface: var(--app-surface);
+  --color-surface-soft: var(--app-surface-soft);
+  --color-surface-raised: var(--app-surface-raised);
+  --color-foreground: var(--app-text);
+  --color-muted: var(--app-text-muted);
+  --color-border: var(--app-border);
+  --color-accent: var(--app-accent);
+  --color-accent-strong: var(--app-accent-strong);
+  --color-on-accent: var(--app-on-accent);
+  --color-focus: var(--app-focus);
+  --color-success: var(--app-success);
+  --color-warning: var(--app-warning);
+  --color-danger: var(--app-danger);
+}
+
+:root {
+  color-scheme: light;
+  font-family: var(--font-interface);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --font-interface:
+    Inter, 'Noto Sans', 'Noto Sans SC', 'Noto Sans JP', 'Noto Sans Arabic', 'Noto Sans Devanagari',
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --app-canvas: #f3eee4;
+  --app-surface: #fffdf8;
+  --app-surface-soft: #e9dfd0;
+  --app-surface-raised: #f9f4ec;
+  --app-text: #352c26;
+  --app-text-muted: #74675d;
+  --app-border: #cdbdac;
+  --app-accent: #815d45;
+  --app-accent-strong: #684632;
+  --app-on-accent: #fffdf8;
+  --app-focus: #99633e;
+  --app-success: #316b5d;
+  --app-warning: #916514;
+  --app-danger: #a33f43;
+  --app-shadow: rgb(83 61 43 / 16%);
+
+  --effect-blur: 18px;
+  --effect-shadow: 0 24px 70px var(--app-shadow);
+  --effect-glow: 0 0 24px color-mix(in srgb, var(--app-accent) 22%, transparent);
+
+  --duration-fast: 160ms;
+  --duration-medium: 320ms;
+  --duration-slow: 560ms;
+  --easing-standard: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --app-canvas: #17191d;
+  --app-surface: #202329;
+  --app-surface-soft: #252930;
+  --app-surface-raised: #292d34;
+  --app-text: #f3f1ec;
+  --app-text-muted: #a9adb5;
+  --app-border: #3a414c;
+  --app-accent: #6694ff;
+  --app-accent-strong: #8bb5ff;
+  --app-on-accent: #11151c;
+  --app-focus: #91b7ff;
+  --app-success: #5eafa0;
+  --app-warning: #d6a84d;
+  --app-danger: #e4777e;
+  --app-shadow: rgb(0 0 0 / 36%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+
+    --app-canvas: #17191d;
+    --app-surface: #202329;
+    --app-surface-soft: #252930;
+    --app-surface-raised: #292d34;
+    --app-text: #f3f1ec;
+    --app-text-muted: #a9adb5;
+    --app-border: #3a414c;
+    --app-accent: #6694ff;
+    --app-accent-strong: #8bb5ff;
+    --app-on-accent: #11151c;
+    --app-focus: #91b7ff;
+    --app-success: #5eafa0;
+    --app-warning: #d6a84d;
+    --app-danger: #e4777e;
+    --app-shadow: rgb(0 0 0 / 36%);
+  }
+}
+
+:root[data-color-profile='red-green'] {
+  --app-success: #0072b2;
+  --app-warning: #e69f00;
+  --app-danger: #d55e00;
+}
+
+:root[data-color-profile='blue-yellow'] {
+  --app-success: #28755f;
+  --app-warning: #b15f17;
+  --app-danger: #a43f75;
+  --app-focus: #8c579f;
+}
+
+:root[data-color-profile='high-contrast'][data-theme='light'] {
+  --app-canvas: #ffffff;
+  --app-surface: #ffffff;
+  --app-surface-soft: #eeeeee;
+  --app-surface-raised: #ffffff;
+  --app-text: #000000;
+  --app-text-muted: #292929;
+  --app-border: #000000;
+  --app-accent: #623b20;
+  --app-accent-strong: #3d210f;
+  --app-on-accent: #ffffff;
+  --app-focus: #005fcc;
+  --app-shadow: rgb(0 0 0 / 28%);
+}
+
+:root[data-color-profile='high-contrast'][data-theme='dark'] {
+  --app-canvas: #000000;
+  --app-surface: #080808;
+  --app-surface-soft: #141414;
+  --app-surface-raised: #1b1b1b;
+  --app-text: #ffffff;
+  --app-text-muted: #e0e0e0;
+  --app-border: #ffffff;
+  --app-accent: #82b1ff;
+  --app-accent-strong: #b6d2ff;
+  --app-on-accent: #000000;
+  --app-focus: #ffdf68;
+  --app-shadow: rgb(0 0 0 / 60%);
+}
+
+:root[data-text-size='xs'] {
+  font-size: 87.5%;
+}
+
+:root[data-text-size='sm'] {
+  font-size: 93.75%;
+}
+
+:root,
+:root[data-text-size='md'] {
+  font-size: 100%;
+}
+
+:root[data-text-size='lg'] {
+  font-size: 112.5%;
+}
+
+:root[data-text-size='xl'] {
+  font-size: 125%;
+}
+
+:root[data-effects='off'] {
+  --effect-blur: 0px;
+  --effect-shadow: none;
+  --effect-glow: none;
+  --duration-fast: 0.01ms;
+  --duration-medium: 0.01ms;
+  --duration-slow: 0.01ms;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-inline-size: 320px;
+  min-block-size: 100%;
+  background-color: var(--app-canvas);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-inline-size: 320px;
+  min-block-size: 100vh;
+  min-block-size: 100dvh;
+  margin: 0;
+  background-color: var(--app-canvas);
+  color: var(--app-text);
+  transition:
+    background-color var(--duration-slow) var(--easing-standard),
+    color var(--duration-medium) var(--easing-standard);
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-interface);
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:not(:disabled),
+a[href] {
+  cursor: pointer;
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+  max-inline-size: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--app-accent) 28%, transparent);
+  color: var(--app-text);
+}
+
+:focus-visible {
+  outline: 3px solid var(--app-focus);
+  outline-offset: 3px;
+}
+
+#root {
+  min-block-size: 100vh;
+  min-block-size: 100dvh;
+  isolation: isolate;
+}
+
+:root[data-effects='off'] *,
+:root[data-effects='off'] *::before,
+:root[data-effects='off'] *::after,
+:root[data-motion='reduced'] *,
+:root[data-motion='reduced'] *::before,
+:root[data-motion='reduced'] *::after {
+  animation-delay: 0ms !important;
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+  transition-delay: 0ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='full']) *,
+  :root:not([data-motion='full']) *::before,
+  :root:not([data-motion='full']) *::after {
+    animation-delay: 0ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

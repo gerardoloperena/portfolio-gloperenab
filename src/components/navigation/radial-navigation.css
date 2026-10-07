@@ -1,0 +1,254 @@
+.radial-navigation-layout {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.radial-navigation-profile {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+}
+
+.radial-navigation {
+  display: grid;
+  width: 100%;
+  gap: 0.75rem;
+}
+
+.radial-navigation__item {
+  position: relative;
+  isolation: isolate;
+  height: 4rem;
+  width: 100%;
+  overflow: hidden;
+  border: 0;
+  border-radius: 1rem;
+  background-color: var(--color-border);
+  padding: 1px;
+  color: var(--color-foreground);
+  cursor: pointer;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.radial-navigation__surface {
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  border-radius: calc(1rem - 1px);
+  background-color: var(--color-surface);
+  transition:
+    background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.radial-navigation__border {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.radial-navigation__border--desktop {
+  display: none;
+}
+
+.radial-navigation__border-path {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.radial-navigation__item:hover .radial-navigation__border-path,
+.radial-navigation__item:focus-visible .radial-navigation__border-path {
+  stroke-dashoffset: 0;
+}
+
+.radial-navigation__label {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 0.75rem;
+  padding-inline: 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.radial-navigation__icon {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 2rem;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 32%, transparent);
+  border-radius: 0.65rem;
+  background-color: color-mix(in srgb, var(--color-accent) 11%, transparent);
+  color: var(--color-accent);
+  transition:
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.radial-navigation__item:hover .radial-navigation__surface {
+  background-color: var(--color-surface-raised);
+  filter: brightness(1.035);
+}
+
+.radial-navigation__item:hover .radial-navigation__icon {
+  transform: scale(1.08);
+  background-color: color-mix(in srgb, var(--color-accent) 17%, transparent);
+}
+
+.radial-navigation__item:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+@media (min-width: 1024px) {
+  .radial-navigation-layout {
+    display: block;
+    width: 49rem;
+    height: 18.25rem;
+  }
+
+  .radial-navigation-profile {
+    position: absolute;
+    top: 0.125rem;
+    left: 0;
+    width: 18rem;
+    height: 18rem;
+  }
+
+  .radial-navigation {
+    position: absolute;
+    top: 0;
+    left: 15rem;
+    z-index: 5;
+    display: block;
+    width: 34rem;
+    height: 18.25rem;
+  }
+
+  .radial-navigation__item {
+    position: absolute;
+    top: var(--item-position);
+    left: 0;
+    width: var(--item-width);
+    -webkit-mask-image: radial-gradient(
+      circle var(--cut-radius) at -6rem var(--cut-center-y),
+      transparent 0 calc(var(--cut-radius) - 0.75px),
+      #000 var(--cut-radius)
+    );
+    mask-image: radial-gradient(
+      circle var(--cut-radius) at -6rem var(--cut-center-y),
+      transparent 0 calc(var(--cut-radius) - 0.75px),
+      #000 var(--cut-radius)
+    );
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  .radial-navigation__surface {
+    -webkit-mask-image: radial-gradient(
+      circle calc(var(--cut-radius) + 1px) at calc(-6rem - 1px) calc(var(--cut-center-y) - 1px),
+      transparent 0 calc(var(--cut-radius) + 0.25px),
+      #000 calc(var(--cut-radius) + 1px)
+    );
+    mask-image: radial-gradient(
+      circle calc(var(--cut-radius) + 1px) at calc(-6rem - 1px) calc(var(--cut-center-y) - 1px),
+      transparent 0 calc(var(--cut-radius) + 0.25px),
+      #000 calc(var(--cut-radius) + 1px)
+    );
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  .radial-navigation__border--mobile {
+    display: none;
+  }
+
+  .radial-navigation__border--desktop {
+    display: block;
+  }
+
+  .radial-navigation__label {
+    padding-inline-start: var(--label-offset);
+    padding-inline-end: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radial-navigation__surface,
+  .radial-navigation__border-path,
+  .radial-navigation__icon {
+    transition: none;
+  }
+
+  .radial-navigation__item:hover .radial-navigation__border-path {
+    stroke-dashoffset: 1;
+  }
+
+  .radial-navigation__item:hover .radial-navigation__icon {
+    transform: none;
+  }
+}
+
+:root[data-effects='off'] .radial-navigation__surface,
+:root[data-effects='off'] .radial-navigation__border-path,
+:root[data-effects='off'] .radial-navigation__icon,
+:root[data-motion='reduced'] .radial-navigation__surface,
+:root[data-motion='reduced'] .radial-navigation__border-path,
+:root[data-motion='reduced'] .radial-navigation__icon {
+  transition: none;
+}
+
+:root[data-effects='off'] .radial-navigation__item:hover .radial-navigation__border-path,
+:root[data-motion='reduced'] .radial-navigation__item:hover .radial-navigation__border-path {
+  stroke-dashoffset: 1;
+}
+
+:root[data-effects='off'] .radial-navigation__item:hover .radial-navigation__icon,
+:root[data-motion='reduced'] .radial-navigation__item:hover .radial-navigation__icon {
+  transform: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .radial-navigation__border {
+    display: none !important;
+  }
+
+  .radial-navigation__item {
+    transform: none !important;
+  }
+
+  .radial-navigation__item:hover .radial-navigation__surface {
+    background-color: var(--color-surface);
+    filter: none;
+  }
+
+  .radial-navigation__item:hover .radial-navigation__icon {
+    transform: none;
+    background-color: color-mix(in srgb, var(--color-accent) 11%, transparent);
+  }
+
+  .radial-navigation__item:active .radial-navigation__surface {
+    background-color: var(--color-surface-raised);
+  }
+}
