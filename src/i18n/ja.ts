@@ -3,6 +3,7 @@ export const ja = {
     common: {
       portfolio: 'ポートフォリオ',
       home: 'ホーム',
+      back: '戻る',
       close: '閉じる',
       previous: '前へ',
       next: '次へ',

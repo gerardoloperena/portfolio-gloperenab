@@ -3,6 +3,7 @@ export const zhCN = {
     common: {
       portfolio: '作品集',
       home: '首页',
+      back: '返回',
       close: '关闭',
       previous: '上一张',
       next: '下一张',

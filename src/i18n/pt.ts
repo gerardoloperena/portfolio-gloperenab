@@ -3,6 +3,7 @@ export const pt = {
     common: {
       portfolio: 'Portfólio',
       home: 'Início',
+      back: 'Voltar',
       close: 'Fechar',
       previous: 'Anterior',
       next: 'Seguinte',

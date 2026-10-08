@@ -170,7 +170,7 @@ function App() {
             type="button"
             onClick={handleBackToHome}
             aria-label={t('common.goHome')}
-            className="group fixed start-3 top-3 z-[70] inline-flex h-12 items-center rounded-full border border-border bg-surface/88 p-1.5 text-sm font-semibold text-foreground shadow-lg backdrop-blur-md transition-[border-color,background-color,transform] duration-200 hover:scale-[1.03] hover:border-accent/70 hover:bg-surface-raised sm:start-6 sm:top-6 sm:pe-4"
+            className="group fixed start-3 top-3 z-[70] inline-flex flex-col items-center border-0 bg-transparent p-0 text-sm font-semibold text-foreground transition-transform duration-200 hover:scale-[1.03] sm:start-6 sm:top-6 sm:h-12 sm:flex-row sm:rounded-full sm:border sm:border-border sm:bg-surface/88 sm:p-1.5 sm:pe-4 sm:shadow-lg sm:backdrop-blur-md sm:transition-[border-color,background-color,transform] sm:hover:border-accent/70 sm:hover:bg-surface-raised"
             initial={
               animationsDisabled
                 ? false
@@ -188,9 +188,14 @@ function App() {
               x: -12,
             }}
           >
-            <span className="size-9 overflow-hidden rounded-full border-2 border-accent bg-surface-soft">
+            <span className="relative z-[1] size-11 overflow-hidden rounded-full border-2 border-accent bg-surface-soft shadow-lg sm:size-9 sm:shadow-none">
               <img src={profileImage} alt="" className="size-full object-cover object-center" />
             </span>
+
+            <span className="-mt-1 rounded-full border border-accent bg-surface px-2 py-1 text-[0.62rem] font-semibold leading-none text-foreground shadow-md sm:hidden">
+              {t('common.back')}
+            </span>
+
             <span className="hidden ps-2 sm:inline">{t('common.home')}</span>
           </motion.button>
         )}

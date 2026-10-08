@@ -3,6 +3,7 @@ export const ar = {
     common: {
       portfolio: 'معرض الأعمال',
       home: 'الرئيسية',
+      back: 'رجوع',
       close: 'إغلاق',
       previous: 'السابق',
       next: 'التالي',

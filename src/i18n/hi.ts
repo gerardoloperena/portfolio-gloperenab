@@ -3,6 +3,7 @@ export const hi = {
     common: {
       portfolio: 'पोर्टफोलियो',
       home: 'होम',
+      back: 'वापस',
       close: 'बंद करें',
       previous: 'पिछला',
       next: 'अगला',
